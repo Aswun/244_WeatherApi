@@ -31,7 +31,30 @@
                 </ul>
             `);
         }
+        
+        function getCuaca(lokasi) {
+            const urlapi = `http://api.weatherapi.com/v1/current.json?key=b7528f540e0247e885220832250710&q=${encodeURIComponent(lokasi)}&aqi=no`;
+            $.ajax({
+                url: urlapi,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    tampilkanCuaca(data);
+                },
+                error: function() {
+                    $('#tampilan').html('Error retrieving data.');
+                }
+            });
+        }
 
+        $('#formLokasi').on('submit', function(e) {
+            e.preventDefault();
+            const lokasi = $('#inputLokasi').val();
+            getCuaca(lokasi);
+        });
+
+        // Load default
+        getCuaca($('#inputLokasi').val());
     </script>
 </body>
 </html>

@@ -13,6 +13,25 @@
         <input type="text" id="inputLokasi" value="">
         <button type="submit">Get</button>
     </form>
-    
+    <hr>
+    <div id="tampilan"></div>
+    <script>
+        function tampilkanCuaca(data) {
+            $('#tampilan').html(`
+                <ul>
+                    <li>Cuaca: ${data.current.condition.text}</li>
+                    <li>Suhu: ${data.current.temp_c} &deg;C</li>
+                    <li>Kelembapan: ${data.current.humidity} %</li>
+                    <li>Lokasi: ${data.location.name}</li>
+                    <li>Negara: ${data.location.country}</li>
+                    <li>Provinsi: ${data.location.region}</li>
+                    <li>Kecamatan: ${data.location.tz_id}</li>
+                    <li>Longitude: ${data.location.lon}</li>
+                    <li>Latitude: ${data.location.lat}</li>
+                </ul>
+            `);
+        }
+
+    </script>
 </body>
 </html>

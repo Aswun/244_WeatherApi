@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    Cuaca : <p id="lokasi"></p>
+    <hr>
+    <div id="tampilan"></div>
+    <script>
+        const urlapi = "http://api.weatherapi.com/v1/current.json?key=b7528f540e0247e885220832250710&q=Yogyakarta&aqi=no";
+        $.ajax({
+            url: urlapi,
+            type: 'GET',
+            dataType: 'json',
+            success: function(Cuaca) {
+                console.log(Cuaca);
+                const temp =  document.getElementById('tampilan');
+                const loct = document.getElementById('lokasi');
+                let suhu = Cuaca.current.temp_c;
+                temp.innerHTML = suhu;
+                let lokasi = Cuaca.location.name;
+                loct.innerHTML = lokasi;
+            },
+            fail: function() {
+                console.log('Error retrieving data.');
+            }   
+        })
+    </script>
+</body>
+</html>
